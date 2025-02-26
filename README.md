@@ -1,54 +1,92 @@
-# LatestAiDevelopment Crew
+# Feasibility Reporter
 
-Welcome to the LatestAiDevelopment Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+基于 CrewAI 的可行性分析报告生成器，能够自动分析需求、技术可行性，并生成详细的报告。
 
-## Installation
+## 功能特点
 
-Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+- 需求分析：自动分析和理解项目需求
+- 技术分析：评估技术可行性和最佳实践
+- 自动报告生成：生成结构化的可行性分析报告
+- AWS Bedrock 集成：使用高级AI模型进行分析
+- GitHub 集成：支持代码库分析和最佳实践研究
 
-First, if you haven't already, install uv:
+## 安装要求
 
+- Python 3.10-3.12
+- AWS 账户（用于 Bedrock 服务）
+- GitHub Token（用于代码库分析）
+
+## 快速开始
+
+1. 克隆仓库：
 ```bash
-pip install uv
+git clone https://github.com/xzy0223/feasibility_reporter.git
+cd feasibility_reporter
 ```
 
-Next, navigate to your project directory and install the dependencies:
-
-(Optional) Lock the dependencies and install them by using the CLI command:
+2. 创建并激活虚拟环境：
 ```bash
-crewai install
-```
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/latest_ai_development/config/agents.yaml` to define your agents
-- Modify `src/latest_ai_development/config/tasks.yaml` to define your tasks
-- Modify `src/latest_ai_development/crew.py` to add your own logic, tools and specific args
-- Modify `src/latest_ai_development/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
-```bash
-$ crewai run
+python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+# 或
+.venv\Scripts\activate  # Windows
 ```
 
-This command initializes the latest-ai-development Crew, assembling the agents and assigning them tasks as defined in your configuration.
+3. 安装依赖：
+```bash
+pip install -e .
+```
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+4. 配置环境变量：
+```bash
+cp .env.example .env
+```
+编辑 .env 文件，填入必要的环境变量：
+```
+MODEL=bedrock/your-model-name
+AWS_ACCESS_KEY_ID=your_aws_access_key_id
+AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
+AWS_REGION_NAME=your_aws_region
+GITHUB_TOKEN=your_github_token
+```
 
-## Understanding Your Crew
+## 使用方法
 
-The latest-ai-development Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+运行可行性分析：
+```bash
+crewai run
+```
 
-## Support
+## 项目结构
 
-For support, questions, or feedback regarding the LatestAiDevelopment Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+```
+feasibility_reporter/
+├── src/
+│   └── feasibility_reporter/
+│       ├── config/           # 配置文件
+│       │   ├── agents.yaml   # AI代理配置
+│       │   └── tasks.yaml    # 任务配置
+│       ├── tools/            # 自定义工具
+│       ├── crew.py          # CrewAI实现
+│       └── main.py          # 主程序入口
+├── .env.example             # 环境变量示例
+└── pyproject.toml           # 项目配置
+```
 
-Let's create wonders together with the power and simplicity of crewAI.
+## 工作流程
+
+1. Requirement Analyst（需求分析专家）分析项目需求
+2. Tech Analyst（技术分析专家）评估技术可行性
+3. Reporting Analyst（报告专家）生成最终报告
+
+分析结果将保存在 `report.md` 文件中。
+
+## 注意事项
+
+- 确保所有敏感信息（API密钥、访问令牌等）都存储在 .env 文件中
+- .env 文件已被添加到 .gitignore，不会被提交到版本控制系统
+- 使用前请确保已正确配置所有必要的环境变量
+
+## License
+
+MIT License
