@@ -53,8 +53,8 @@ github_tool = GithubSearchTool(
 )
 
 @CrewBase
-class RequirementAnalysis():
-	"""LatestAiDevelopment crew"""
+class FeasibilityReporter():
+	"""Feasibility report crew"""
 
 	# Learn more about YAML configuration files here:
 	# Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
@@ -136,7 +136,7 @@ class RequirementAnalysis():
 			process=Process.sequential,
 			verbose=1,
 			memory=True,
-			max_rpm=10,
+			max_rpm=5,
 			embedder={
 				"provider": "bedrock",
 				"config": {

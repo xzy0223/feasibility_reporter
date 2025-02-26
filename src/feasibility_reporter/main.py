@@ -4,7 +4,7 @@ import warnings
 
 from datetime import datetime
 
-from feasibility_reporter.crew import RequirementAnalysis
+from feasibility_reporter.crew import FeasibilityReporter
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -23,7 +23,7 @@ def run():
     }
     
     try:
-        RequirementAnalysis().crew().kickoff(inputs=inputs)
+        FeasibilityReporter().crew().kickoff(inputs=inputs)
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
@@ -36,7 +36,7 @@ def train():
         'feature_request': '在live-streaming-on-aws-with-amazon-s3方案中增加视频理解功能'
     }
     try:
-        RequirementAnalysis().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+        FeasibilityReporter().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
 
     except Exception as e:
         raise Exception(f"An error occurred while training the crew: {e}")
@@ -46,7 +46,7 @@ def replay():
     Replay the crew execution from a specific task.
     """
     try:
-        RequirementAnalysis().crew().replay(task_id=sys.argv[1])
+        FeasibilityReporter().crew().replay(task_id=sys.argv[1])
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
@@ -59,7 +59,7 @@ def test():
         "topic": "AI LLMs"
     }
     try:
-        RequirementAnalysis().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
+        FeasibilityReporter().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
 
     except Exception as e:
         raise Exception(f"An error occurred while testing the crew: {e}")

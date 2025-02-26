@@ -26,6 +26,7 @@ wheels/
 env/
 venv/
 ENV/
+feasibility_reporter
 
 # IDE
 .idea/
