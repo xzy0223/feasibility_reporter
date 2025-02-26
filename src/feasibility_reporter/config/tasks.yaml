@@ -1,0 +1,24 @@
+requirement_analyst_task:
+  description: >
+    进行全面详实的关于{feature_request}的分析
+  expected_output: >
+    列出你对{feature_request}分析的观点和结果
+  agent: requirement_analyst
+
+tech_analyst_task:
+  description: >
+    基于产品/方案现有的技术资料和代码仓库，进行全面详实的关于{feature_request}的技术分析
+  expected_output: >
+    列出你对{feature_request}分析的观点和结果。
+    包括目前技术实现的方式，从软件工程的角度实现{feature_request}的关键技术点、难点和可行的方案
+    明确列出需要修改的技术模块和需要修改代码模块
+  agent: tech_analyst
+
+reporting_task:
+  description: >
+    审查你获得的上下文，并将每个主题扩展为报告的完整章节，生成一个详实完整专业的针对{feature_request}的可行性报告。
+    确保报告详细且包含所有相关信息。
+  expected_output: >
+    一份完整成熟的报告，包含主要主题，每个主题都有完整的信息章节。
+    使用markdown格式但不包含'```'符号。
+  agent: reporting_analyst
